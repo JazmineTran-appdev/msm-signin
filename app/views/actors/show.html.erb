@@ -1,7 +1,7 @@
 <div>
   <div>
     <h1>
-      Actor #<%= @the_actor.id %> details
+      <%= @the_actor.name %>
     </h1>
 
     <div>
@@ -17,6 +17,8 @@
         </a>
       </div>
     </div>
+
+    <hr>
 
     <dl>
       <dt>
@@ -44,7 +46,7 @@
         Image
       </dt>
       <dd>
-        <%= @the_actor.image %>
+        <img src="<%= @the_actor.image %>">
       </dd>
 
       <dt>
@@ -66,6 +68,43 @@
 
 <hr>
 
+<h2>Filmography</h2>
+
+<table border="1">
+  <tr>
+    <th>Title</th>
+    <th>Year</th>
+    <th>Director</th>
+    <th>Character</th>
+    <th> </th>
+  </tr>
+
+  <% @the_actor.filmography.each do |movie| %>
+    <tr>
+      <td>
+        <%= movie.title %>
+      </td>
+
+      <td>
+        <%= movie.year %>
+      </td>
+
+      <td>
+        <%= movie.director.name %>
+      </td>
+
+      <td>
+        <%= movie %>
+      </td>
+
+      <td>
+        <a href="/movies/<%= movie.id %>">
+          Show details
+        </a>
+      </td>
+    </tr>
+  <% end %>
+</table>
 
 <div>
   <div>
