@@ -1,7 +1,7 @@
 <div>
   <div>
     <h1>
-      Movie #<%= @the_movie.id %> details
+      <%= @the_movie.title %>
     </h1>
 
     <div>
@@ -56,15 +56,9 @@
         Duration
       </dt>
       <dd>
-        <%= @the_movie.duration %>
+        <%= @the_movie.duration %> minutes
       </dd>
 
-      <dt>
-        Director
-      </dt>
-      <dd>
-        <%= @the_movie.director_id %>
-      </dd>
 
       <dt>
         Description
@@ -78,6 +72,57 @@
       </dt>
       <dd>
         <img src="<%= @the_movie.image %>">
+      </dd>
+      
+      <dt>
+        Director
+      </dt>
+      <dd>
+        <a href="/directors/<%= @the_movie.director_id %>">
+          <%= @the_movie.director.name %>
+        </a>
+      </dd>
+
+      <dt>
+        Cast
+      </dt>
+      <dd>
+        <ul>
+          <% @the_movie.characters.each do |the_cast| %>
+            <li>
+              <a href="/actors/<%= the_cast.actor.id %>">
+                <%= the_cast.actor.name %>
+              </a>
+              (<%= the_cast.name %>)
+            </li>
+          <% end %>
+          <p>Add a cast member:</p>
+
+          <form action="/insert_character" method="post">
+            
+            <div>
+              <label for="actor">Actor</label>
+
+              <select id="actor" name="query_actor_id">
+                <% Actor.all.order(:name).each do |an_actor| %>
+                  <option value="<%= an_actor.id %>">
+                    <%= an_actor.name %>
+                  </option>
+                <% end %>
+              </select>
+            </div>
+
+            <input id="movie" type="hidden" name="query_movie_id" value="<%= @the_movie.id %>">
+
+            <div>
+              <label for="character">Character</label>
+              <input id="character" type="text" name="query_name">
+            </div>
+            
+            <button>Add cast member</button>
+          </form>
+
+        </ul>
       </dd>
 
       <dt>

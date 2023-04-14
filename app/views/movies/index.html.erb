@@ -20,7 +20,7 @@
           Title
         </label>
 
-        <input type="text" id="title_box" name="query_title">
+        <input type="text" id="title_box" name="query_title" placeholder="Movie name">
       </div>
 
       <div>
@@ -28,7 +28,7 @@
           Year
         </label>
 
-        <input type="text" id="year_box" name="query_year">
+        <input type="text" id="year_box" name="query_year" placeholder="Year">
       </div>
 
       <div>
@@ -36,7 +36,7 @@
           Duration
         </label>
 
-        <input type="text" id="duration_box" name="query_duration">
+        <input type="text" id="duration_box" name="query_duration" placeholder="Duration in minutes">
       </div>
 
       <div>
@@ -44,7 +44,13 @@
           Director
         </label>
 
-        <input type="text" id="director_id_box" name="query_director_id">
+        <select id="director_id_box" name="query_director_id">
+          <% Director.all.order(:name).each do |directors| %>
+            <option value="<%= directors.id %>">
+              <%= directors.name %>
+            </option>
+          <% end %>
+        </select>
       </div>
 
       <div>
@@ -52,7 +58,7 @@
           Description
         </label>
 
-        <textarea id="description_box" name="query_description" rows="3"></textarea>
+        <textarea id="description_box" name="query_description" rows="3" placeholder="What's the movie about?"></textarea>
       </div>
 
       <div>
@@ -60,7 +66,7 @@
           Image
         </label>
 
-        <input type="text" id="image_box" name="query_image">
+        <input type="text" id="image_box" name="query_image" placeholder="Image URL">
       </div>
 
       <button>
@@ -78,6 +84,10 @@
         <th>
           ID
         </th>
+        
+        <th>
+          Image
+        </th>
 
         <th>
           Title
@@ -88,27 +98,7 @@
         </th>
 
         <th>
-          Duration
-        </th>
-
-        <th>
           Director
-        </th>
-
-        <th>
-          Description
-        </th>
-
-        <th>
-          Image
-        </th>
-
-        <th>
-          Created at
-        </th>
-
-        <th>
-          Updated at
         </th>
 
         <th>
@@ -122,6 +112,10 @@
         </td>
 
         <td>
+          <img src="<%= a_movie.image %>">
+        </td>
+        
+        <td>
           <%= a_movie.title %>
         </td>
 
@@ -130,27 +124,7 @@
         </td>
 
         <td>
-          <%= a_movie.duration %>
-        </td>
-
-        <td>
-          <%= a_movie.director.name %>
-          (<%= a_movie.director.dob %>)
-        </td>
-
-        <td>
-          <%= a_movie.description %>
-        </td>
-
-        <td>
-          <img src="<%= a_movie.image %>">
-        </td>
-
-        <td>
-          <%= time_ago_in_words(a_movie.created_at) %> ago
-        </td>
-        <td>
-          <%= time_ago_in_words(a_movie.updated_at) %> ago
+          <a href="/directors/<%= a_movie.director.id %>"><%= a_movie.director.name %></a>
         </td>
 
         <td>

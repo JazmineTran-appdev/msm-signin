@@ -25,9 +25,9 @@ class CharactersController < ApplicationController
 
     if the_character.valid?
       the_character.save
-      redirect_to("/characters", { :notice => "Character created successfully." })
+      redirect_to("/movies/#{the_character.movie_id}", { :notice => "Character created successfully." })
     else
-      redirect_to("/characters", { :alert => the_character.errors.full_messages.to_sentence })
+      redirect_to("/movies/#{the_character.movie_id}", { :alert => the_character.errors.full_messages.to_sentence })
     end
   end
 
