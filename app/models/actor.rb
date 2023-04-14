@@ -16,4 +16,6 @@ class Actor < ApplicationRecord
   # dropped curlies around this hash because the hash literal is the last argument
   # check movies.rb to see with the paranthesis or curlies
   has_many :filmography, :through => :characters, :source => :movie
+
+  validates(:name, { :presence => true })
 end

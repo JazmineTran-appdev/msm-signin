@@ -96,31 +96,74 @@
               (<%= the_cast.name %>)
             </li>
           <% end %>
-          <p>Add a cast member:</p>
 
-          <form action="/insert_character" method="post">
-            
-            <div>
-              <label for="actor">Actor</label>
+          <div>
+            <p>Add a cast member:</p>
 
-              <select id="actor" name="query_actor_id">
-                <% Actor.all.order(:name).each do |an_actor| %>
-                  <option value="<%= an_actor.id %>">
-                    <%= an_actor.name %>
-                  </option>
-                <% end %>
-              </select>
-            </div>
+            <form action="/insert_character" method="post">
+              
+              <div>
+                <label for="actor">Actor</label>
 
-            <input id="movie" type="hidden" name="query_movie_id" value="<%= @the_movie.id %>">
+                <select id="actor" name="query_actor_id">
+                  <% Actor.all.order(:name).each do |an_actor| %>
+                    <option value="<%= an_actor.id %>">
+                      <%= an_actor.name %>
+                    </option>
+                  <% end %>
+                </select>
+              </div>
 
-            <div>
-              <label for="character">Character</label>
-              <input id="character" type="text" name="query_name">
-            </div>
-            
-            <button>Add cast member</button>
-          </form>
+              <input id="movie" type="hidden" name="query_movie_id" value="<%= @the_movie.id %>">
+
+              <div>
+                <label for="character">Character</label>
+                <input id="character" type="text" name="query_name">
+              </div>
+              
+              <button>Add cast member</button>
+            </form>
+          </div>
+
+          <hr>
+
+          <div>
+            <p>Edit a character</p>
+
+            <form action="/modify_character/<%=  %>" method="post">
+              <div>
+                <label for="character">Which character do you want to modify?</label>
+                <select id="character" name="query_character_id">
+                    <% @the_movie.characters.each do |character| %>
+                      <option value="<%= character.id %>">
+                        <%= character.name %>
+                      </option>
+                    <% end %>
+                </select>
+              </div>
+
+              <input id="movie" type="hidden" name="query_movie_id" value="<%= @the_movie.id %>">
+
+              <div>
+                <label for="chara_name">Change character's name</label>
+                <input id="chara_name" type="text" name="query_name">
+              </div>
+
+              <div>
+                <label for="actor">Change the actor</label>
+                <select id="actor" name="query_actor_id">
+                  <% Actor.all.order(:name).each do |an_actor| %>
+                    <option value="<%= an_actor.id %>">
+                      <%= an_actor.name %>
+                    </option>
+                  <% end %>
+                </select>
+              </div>
+
+              <button>Update character</button>
+            <form>
+
+          </div>
 
         </ul>
       </dd>
