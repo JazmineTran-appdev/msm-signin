@@ -57,4 +57,21 @@ class DirectorsController < ApplicationController
 
     redirect_to("/directors", { :notice => "Director deleted successfully."} )
   end
+
+  def youngest
+    matching_director = Director.all
+    ordered_directors = matching_director.order({ :dob => :desc })
+    @the_youngest = ordered_directors.first
+
+    render({ :template => "directors/youngest.html.erb" })
+  end
+
+  def eldest
+    matching_director = Director.all
+    ordered_directors = matching_director.order({ :dob => :asc })
+    @the_eldest = ordered_directors.first
+
+    render({ :template => "directors/eldest.html.erb" })
+  end
+
 end

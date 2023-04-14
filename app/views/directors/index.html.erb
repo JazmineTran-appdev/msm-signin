@@ -20,12 +20,12 @@
           Name
         </label>
 
-        <input type="text" id="name_box" name="query_name">
+        <input type="text" id="name_box" name="query_name" placeholder="Director name">
       </div>
 
       <div>
         <label for="dob_box">
-          Dob
+          DOB
         </label>
 
         <input type="date" id="dob_box" name="query_dob">
@@ -36,7 +36,7 @@
           Bio
         </label>
 
-        <textarea id="bio_box" name="query_bio" rows="3"></textarea>
+        <textarea id="bio_box" name="query_bio" rows="3" placeholder="Add a bio!"></textarea>
       </div>
 
       <div>
@@ -44,7 +44,7 @@
           Image
         </label>
 
-        <input type="text" id="image_box" name="query_image">
+        <input type="text" id="image_box" name="query_image" placeholder="Image URL">
       </div>
 
       <button>
@@ -64,6 +64,10 @@
         </th>
 
         <th>
+          Image
+        </th>
+
+        <th>
           Name
         </th>
 
@@ -71,21 +75,6 @@
           Dob
         </th>
 
-        <th>
-          Bio
-        </th>
-
-        <th>
-          Image
-        </th>
-
-        <th>
-          Created at
-        </th>
-
-        <th>
-          Updated at
-        </th>
 
         <th>
         </th>
@@ -98,6 +87,10 @@
         </td>
 
         <td>
+          <img src="<%= a_director.image %>">
+        </td>
+
+        <td>
           <%= a_director.name %>
         </td>
 
@@ -105,20 +98,6 @@
           <%= a_director.dob %>
         </td>
 
-        <td>
-          <%= a_director.bio %>
-        </td>
-
-        <td>
-          <%= a_director.image %>
-        </td>
-
-        <td>
-          <%= time_ago_in_words(a_director.created_at) %> ago
-        </td>
-        <td>
-          <%= time_ago_in_words(a_director.updated_at) %> ago
-        </td>
 
         <td>
           <a href="/directors/<%= a_director.id %>">

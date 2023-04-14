@@ -16,23 +16,7 @@
 
   <body>
     <ul>
-      <li>
-        <a href="/movies">Movies</a>
-      </li>
-
-      <li>
-        <a href="/directors">Directors</a>
-      </li>
-
-      <li>
-        <a href="/actors">Actors</a>
-      </li>
-
-      <li>
-        <a href="/characters">Characters</a>
-      </li>
-
-      <% if session.fetch(:user_id) == nil %>
+      <% if @the_user == nil %>
         <li>
           <a href="/user_sign_up">Sign Up</a>
         </li>
@@ -44,12 +28,21 @@
         <li>
           <a href="/user_sign_out">Sign Out</a>
         </li>
+
+        <li>
+          <a href="/bookmarks">My bookmarks</a>
+        </li>
       <% end %>
+
+      <li>
+        <a href="/">Home</a>
+      </li>
+
     </ul>
 
     <p style="color: green"><%= notice %></p>
     <p style="color: red"><%= alert %></p>
-    
+
     <%= yield %>
   </body>
 </html>

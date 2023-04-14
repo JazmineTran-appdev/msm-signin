@@ -1,0 +1,42 @@
+<h1><%= @the_user.first_name %> <%= @the_user.last_name %>'s bookmarks</h1>
+
+<form action="/insert_bookmark" method="post">
+  <div>
+    <select name="query_movie_id">
+      <% Movie.all.order(:title).each do |movies| %>
+        <option value="<%= movies.id %>">
+          <%= movies.title %>
+        </option>
+      <% end %>
+    </select>
+
+    <button>Bookmark this movie!</button>
+  </div>
+</form>
+
+<hr>
+
+<table border="1">
+  <tr>
+    <th>Movie</th>
+    <th>Created at</th>
+    <th> </th>
+  </tr>
+
+  <% @matching_bookmarks.each do |a_movie| %>
+  <tr>
+    <td>
+      <%= a_movie.movie.title %> 
+    </td>
+      
+    <td>
+       <%= time_ago_in_words(a_movie.created_at) %> ago
+    </td>
+
+    <td>
+      <a href="/delete_bookmark/<%= a_movie.id %>">Un-bookmark</a>
+    </td>
+
+  </tr>
+  <% end %>
+</table>

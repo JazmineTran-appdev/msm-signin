@@ -1,7 +1,7 @@
 <div>
   <div>
     <h1>
-      Director #<%= @the_director.id %> details
+      <%= @the_director.name %>
     </h1>
 
     <div>
@@ -17,6 +17,8 @@
         </a>
       </div>
     </div>
+
+    <hr>
 
     <dl>
       <dt>
@@ -44,7 +46,7 @@
         Image
       </dt>
       <dd>
-        <%= @the_director.image %>
+        <img src="<%= @the_director.image %>">
       </dd>
 
       <dt>

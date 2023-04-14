@@ -7,7 +7,7 @@ class ApplicationController < ActionController::Base
   def load_current_user
     the_id = session[:user_id]
     
-    @current_user = User.where({ :id => the_id }).first
+    @the_user = User.where({ :id => the_id }).first
   end
   
   def force_user_sign_in
@@ -16,5 +16,9 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  def homepage
+
+    render({ :template => "movies/homepage.html.erb" })
+  end
 
 end

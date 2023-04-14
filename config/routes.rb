@@ -1,6 +1,25 @@
 Rails.application.routes.draw do
 
-  get("/", { :controller => "movies", :action => "index"})
+  # Routes for the Bookmark resource:
+
+  #get("/add_bookmark", { :controller => "movies", :action => "add_user_bookmark" })
+
+  # CREATE
+  post("/insert_bookmark", { :controller => "bookmarks", :action => "create" })
+          
+  # READ
+  get("/bookmarks", { :controller => "bookmarks", :action => "my_bookmarks" })
+  
+  # UPDATE
+  
+  post("/modify_bookmark/:path_id", { :controller => "bookmarks", :action => "update" })
+  
+  # DELETE
+  get("/delete_bookmark/:path_id", { :controller => "bookmarks", :action => "destroy" })
+
+  #------------------------------
+
+  get("/", { :controller => "application", :action => "homepage"})
 
   # Routes for the User account:
 
@@ -74,6 +93,8 @@ Rails.application.routes.draw do
           
   # READ
   get("/directors", { :controller => "directors", :action => "index" })
+  get("/directors/youngest", { :controller => "directors", :action => "youngest" })
+  get("/directors/eldest", { :controller => "directors", :action => "eldest" })
   
   get("/directors/:path_id", { :controller => "directors", :action => "show" })
   
@@ -83,6 +104,8 @@ Rails.application.routes.draw do
   
   # DELETE
   get("/delete_director/:path_id", { :controller => "directors", :action => "destroy" })
+
+
 
   #------------------------------
 
