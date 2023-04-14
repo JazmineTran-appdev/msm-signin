@@ -68,6 +68,49 @@
 
 <hr>
 
+<h2>Filmography</h2>
+
+<table border="1">
+  <tr>
+    <th>ID</th>
+    <th>Image</th>
+    <th>Title</th>
+    <th>Year</th>
+    <th>Director</th>
+    <th> </th>
+  </tr>
+
+  <% @matching_movies.each do |a_movie| %>
+  <tr>
+    <td>
+      <%= a_movie.id %>
+    </td>
+
+    <td>
+      <img src="<%= a_movie.image %>">
+    </td>
+
+    <td>
+      <%= a_movie.title %>
+    </td>
+
+    <td>
+      <%= a_movie.year %>
+    </td>
+
+    <td>
+      <%= a_movie.director.name %>
+    </td>
+
+    <td>
+      <a href="/movies/<%= a_movie.id %>">Show details</a>
+    </td>
+  </tr>
+  <% end %>
+
+</table>
+
+<hr>
 
 <div>
   <div>

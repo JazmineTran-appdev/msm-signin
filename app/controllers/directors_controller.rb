@@ -14,6 +14,8 @@ class DirectorsController < ApplicationController
 
     @the_director = matching_directors.at(0)
 
+    @matching_movies = @the_director.filmography.all
+
     render({ :template => "directors/show.html.erb" })
   end
 
