@@ -48,11 +48,12 @@ class CharactersController < ApplicationController
   end
 
   def destroy
-    the_id = params.fetch("path_id")
+    the_id = params.fetch("query_id")
     the_character = Character.where({ :id => the_id }).at(0)
+    movie_id = params.fetch("query_movie_id")
 
     the_character.destroy
 
-    redirect_to("/characters", { :notice => "Character deleted successfully."} )
+    redirect_to("/movies/#{movie_id}", { :notice => "Character deleted successfully."} )
   end
 end

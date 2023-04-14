@@ -130,7 +130,7 @@
           <div>
             <p>Edit a character</p>
 
-            <form action="/modify_character/<%=  %>" method="post">
+            <form action="/modify_character" method="post">
               <div>
                 <label for="character">Which character do you want to modify?</label>
                 <select id="character" name="query_character_id">
@@ -161,8 +161,28 @@
               </div>
 
               <button>Update character</button>
-            <form>
+            </form>
+          </div>
 
+          <hr>
+
+          <div>
+            <p>Delete a character</p>
+
+            <form action="/delete_character">
+              <label for="character">Character</label>
+              <select id="character" name="query_id">
+                <% @the_movie.characters.each do |character| %>
+                  <option value="<%= character.id %>">
+                    <%= character.name %>
+                  </option>
+                <% end %>
+              </select>
+
+              <input id="movie" type="hidden" name="query_movie_id" value="<%= @the_movie.id %>">
+
+              <button>Delete character</button>
+            </form>
           </div>
 
         </ul>
