@@ -94,7 +94,7 @@
       </td>
 
       <td>
-        <%= movie %>
+        <%= movie.characters.where({ :actor_id => @the_actor.id }).first.name %>
       </td>
 
       <td>
@@ -105,6 +105,34 @@
     </tr>
   <% end %>
 </table>
+
+<div>
+  <h2>Add Filmography</h2>
+  
+  <form action="/insert_character" method="post">
+    <div>
+      <label for="movie">Movie</label>
+      <select id="movie" name="query_movie_id">
+        <% Movie.all.order(:name).each do |a_movie| %>
+          <option value="<%= a_movie.id %>">
+            <%= a_movie.title %>
+          </option>
+        <% end %>
+      </select>
+    </div>
+
+    <div>
+      <input type="hidden" id="actor" name="query_actor_id" value="<%= @the_actor.id %>">
+    </div>
+
+    <div>
+      <label for="character">Character</label>
+      <input type="text" id="character" name="query_name">
+    </div>
+
+    <button>Add Character</button>
+  </form>
+</div>
 
 <div>
   <div>
